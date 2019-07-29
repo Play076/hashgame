@@ -39,8 +39,11 @@ int main()
 	//PT-BR: Imprimir matriz de posição
 	//EN-USA: Print position matriz
 	int answame;
-	//PT-BR: Repostas do player
+	//PT-BR: Repostas do jogador
 	//EN-USA: Answame of player
+	int chooses;
+	//PT-BR: Escolha do jogador
+	//EN-USA: Chooses of position
 	bool verificationendgame=false;
 	//PT-BR: Verificar fim de jogo
 	//EN-USA: Check End Game
@@ -59,15 +62,40 @@ int main()
 	do
 	{
 		scanf(" %c", &PLAY1);
-	}while(PLAY1 != 120);
+		if(PLAY1 == 120 || PLAY1 == 88)
+		{
+			chooses = 1;
+		}else if(PLAY1 == 111 || PLAY1 == 79)
+		{
+			chooses = 2;
+		}
+	}while(chooses == 0);
 	//PT-BR: Verifica sé o jogador escolhe o X ou o O
 	//EN-USA: Check if the player chooses X or O
 	printf("\n");
-	printf("PLAY2 select [O]: \n");
-	do
+	if(chooses == 1)
 	{
-		scanf(" %c", &PLAY2);
-	}while(PLAY2 != 111);
+		printf("PLAY2 select [O]: \n");
+		do
+		{
+			scanf(" %c", &PLAY2);
+			if(PLAY2 == 111 || PLAY2 == 79)
+			{
+				chooses = 1;
+			}
+		}while(chooses == 0);
+	}else
+	{
+		printf("PLAY2 select [x]: \n");
+		do
+		{
+			scanf(" %c", &PLAY2);
+			if(PLAY2 == 120 || PLAY2 == 88)
+			{
+				chooses = 1;
+			}
+		}while(chooses == 0);
+	}
 	//PT-BR: Verifica sé o jogador escolhe O
 	//EN-USA: Check if the player chooses O
 	system("CLS");

@@ -14,8 +14,7 @@
 char PLAY1, PLAY2, aux;
 //PT-BR: Valores do símbolo do Jogador 1 e do Jogador 2 no jogo
 //EN-USA: Values of symbol of Player 1 and Player 2 on game
-
-void verificationpos(char game[max][max], int awe, char PLAY);
+int verificationpos(char game[max][max], int awe, char PLAY);
 //PT-BR: Verificações de posição do jogo para adicionar X ou O
 //EN-USA: Game position check for add X or O
 void gamebuild(char game[max][max], int prints[max][max]);
@@ -68,6 +67,9 @@ int main()
 		}else if(PLAY1 == 111 || PLAY1 == 79)
 		{
 			chooses = 2;
+		}else
+		{
+			chooses = 0;
 		}
 	}while(chooses == 0);
 	//PT-BR: Verifica sé o jogador escolhe o X ou o O
@@ -82,6 +84,9 @@ int main()
 			if(PLAY2 == 111 || PLAY2 == 79)
 			{
 				chooses = 1;
+			}else
+			{
+				chooses = 0;
 			}
 		}while(chooses == 0);
 	}else
@@ -93,6 +98,9 @@ int main()
 			if(PLAY2 == 120 || PLAY2 == 88)
 			{
 				chooses = 1;
+			}else
+			{
+				chooses = 0;
 			}
 		}while(chooses == 0);
 	}
@@ -119,7 +127,14 @@ int main()
 			{
 				scanf(" %d", &answame);
 			}while(answame < 14 || answame > 22);
-			verificationpos(game, answame, PLAY2);
+			while(verificationpos(game, answame, PLAY2) != true)
+			{
+				printf("Invalid Position\n");
+			       do
+				{
+				    scanf(" %d", &answame);
+				}while(answame < 14 || answame > 22);
+			}
 			if(verification(game) == true)
 			{
 				system("CLS");
@@ -159,7 +174,14 @@ int main()
 			{
 				scanf(" %d", &answame);
 			}while(answame < 14 || answame > 22);
-			verificationpos(game, answame, PLAY1);
+			while(verificationpos(game, answame, PLAY1) != true)
+			{
+				printf("Invalid Position\n");
+				do
+				{
+				    scanf(" %d", &answame);
+				}while(answame < 14 || answame > 22);
+			}
 			if(verification(game) == true)
 			{
 				system("CLS");
@@ -199,7 +221,14 @@ int main()
 			{
 				scanf(" %d", &answame);
 			}while(answame < 14 || answame > 22);
-			verificationpos(game, answame, PLAY1);
+			while(verificationpos(game, answame, PLAY1) != true)
+			{
+				printf("Invalid Position\n");
+			       do
+				{
+				    scanf(" %d", &answame);
+				}while(answame < 14 || answame > 22);
+			}
 			aux = PLAY1;
 			system("CLS");
 		}
@@ -207,7 +236,7 @@ int main()
 
 	return 0;
 }
-void verificationpos(char game[max][max], int awe, char PLAY)
+int verificationpos(char game[max][max], int awe, char PLAY)
 {
 	//PT-BR: Sé o play for igual a o jogador X
 	//EN-USA: If the play is equal to the player X
@@ -222,9 +251,11 @@ void verificationpos(char game[max][max], int awe, char PLAY)
 				if(game[i][j] == awe)
 				{
 					game[i][j] = PLAY;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	//PT-BR: Sé o play for igual a o jogador O
 	//EN-USA: If the play is equal to the player O
@@ -239,9 +270,11 @@ void verificationpos(char game[max][max], int awe, char PLAY)
 				if(game[i][j] == awe)
 				{
 					game[i][j] = PLAY;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 }
 void gamebuild(char game[max][max], int prints[max][max])

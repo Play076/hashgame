@@ -1,4 +1,3 @@
-# ValdemirSoft
 Softwares
 
 Um simples jogo da velha escrito em C.
